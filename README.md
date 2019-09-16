@@ -17,7 +17,7 @@ To follow along with this tutorial all that is required is an AWS account, freel
 
 While the Serverless (www.serverless.com) Framework was employed to build and deploy the version of the Node.js Lambda function that handle's the API call to the OpenWeather API, you can simply download local copies of the relevant files from this project to follow along with steps of this tutorial.  
 
-# Step 1: Create a Repository for your reservation request
+# Step 1: Create a DynamoDB table for your reservation request
 
 For this exercise we are going to use an AWS DynamoDB database to store our user data.  As a NoSQL database, DynamoDB is particularly well suited for this type of task as we need only define a 'primary key' index parameter to hold our users data.  The rest of the parameters we want to store can be added later dynamically.  
 
@@ -67,3 +67,21 @@ On the "Create your bot" page, select the "custom bot" option at the top.  To co
 <img src="Images/CreateYourBot.png" width="700" />
 </p>
 </details>
+
+# Step 3: Create Intents
+
+After you have created your bot, you should see 'Editor' tab of the main page for your bot.
+
+<img src="Images/BotEditor.png" width="700" />
+
+As indicated by this screen, the primary thing we now need to do to finish our bot is to create its *intents*.  As you can also tell from this screen, *intents* are the things that user can do with our bot.  Becaue I want to demonstrate the ease with which we can both pull information into, as well as push information out of, our bot it will be userful to define two different things that our users will be able to with our bot.  Namely:
+
+<list>
+  Intent 1: Check the weather for a given city
+  Intent 2: Enter their information for flight reservation to a city
+ </list>
+
+We can start off creating these intents by clicking on the "Create Intent" button the editor tab, and then selecting "create intent" again on the following pop-up menu.
+ 
+
+ 
