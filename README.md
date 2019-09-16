@@ -10,7 +10,7 @@ The user interface is developed through the AWS Lex service.  An AWS DynamoDB is
   How to create serverless Lambda functions to pass data into and out of a Lex Chatbot
   How to upload Lambda Node.js dependency libraries into a Lamba function
   How to test the functionality of your chatbot within the AWS console  
-</list>
+
 
 # Requirements
 To follow along with this tutorial all that is required is an AWS account, freely available here: www.aws.amazon.com, and access to the OpenWeather API, which is available through a free subscription here: www.openweathermap.org
