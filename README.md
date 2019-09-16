@@ -31,7 +31,8 @@ To create our database, log into your AWS console, and select DynamoDB from the 
 </p>
 </details>
 
-From there, select the "Create Table" button. 
+From there, select the "Tables" submenu option on the right.  Then click on the "Create Table" button on the main screen.
+
 <details><summary>Create Table</summary>
 <p>
 <img src="Images/CreateDatabase.PNG" width="700" />
