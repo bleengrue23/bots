@@ -7,7 +7,9 @@ The user interface is developed through the AWS Lex service.  An AWS DynamoDB is
 <list>
 How to build a Lex Chatbot UI employing custom intents and slots 
 How to create a NoSQL DynamoDB to store and retrieve end-user data
-How to create and assign user permissions 
+How to create serverless Lambda functions to pass data into and out of a Lex Chatbot
+How to upload Lambda Node.js dependency libraries into a Lamba function
+How to test the functionality of your chatbot within the AWS console  
 </list>
 
 # Requirements
@@ -35,3 +37,13 @@ From there, select the "Create Table" button.
 <img src="Images/CreateDatabase.PNG" width="700" />
 </p>
 </details>
+On the table creation screen, enter names for your table and primary key.  Use "string" for your primary key data type. And use the default settings for your table's creation. 
+<details><summary>DynamoDB Table Creation Settings</summary>
+<p>
+<img src="Images/TableCreationSettings.PNG" width="700" />
+</p>
+</details>
+
+Once you have created your table, we have completed everything necessary for the task of building a queryable database repository of user data for making flight reservations.  All you need to do is note the names you used for your table and key. Your table name will be used later in the creation of the Lambda function that will pass the user data into this database.  Your primary key name will be used in the next section when we create our when we create the intent slots for our Lex chatbot.
+
+#Step 2: Creating a Lex Chatbot
