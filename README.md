@@ -64,6 +64,6 @@ On the "Create your bot" page, select the "custom bot" option at the top.  To co
 
 <details><summary>Create Your Bot Options</summary>
 <p>
-<img src="Images/CreateYourBot.PNG" width="700" />
+<img src="Images/CreateYourBot.png" width="700" />
 </p>
 </details>
