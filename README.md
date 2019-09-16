@@ -23,6 +23,6 @@ To create our database, log into your AWS console, and select DynamoDB from the 
 
 <details><summary>Services Menu</summary>
 <p>
-![](github.com/bleengrue23/bots/DynamoServices.png)
+![](github.com/bleengrue23/bots/blob/master/DynamoServices.png)
 </p>
 </details>
