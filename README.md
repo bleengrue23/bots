@@ -19,9 +19,9 @@ While the Serverless (www.serverless.com) Framework was employed to build and de
 
 # Step 1: Create a Repository for your reservation request
 
-For this exercise we are going to use an AWS DynamoDB database to store our user data.  DynamoDB is particularly well suited for this type of task as we need only define a 'primary key' index parameter to hold our users data.  
+For this exercise we are going to use an AWS DynamoDB database to store our user data.  As a NoSQL database, DynamoDB is particularly well suited for this type of task as we need only define a 'primary key' index parameter to hold our users data.  The rest of the parameters we want to store can be added later dynamically.  
 
-The primary key of a DynamoDB is required for each item held.  Additional item attributes can later be added to database on the fly.  We do not need to define them at this stage. We need only decide which user/item attribute will be used for the primary sort index of our database.  In this example I have used last-name for the primary key, denoting only that for a given user to be defined in our database we will need to pass their last name as a parameter into DynamoDB.
+The primary key of a DynamoDB is required for each item held.  Additional item attributes can later be added to database on an as-needed bases by pairing the attibute with an index value through JSON.  We do not need to define any additional attributes at this initial stage. We need only decide which user/item attribute will be used for the primary sort index of our database.  In this example I have used last-name for the primary key, denoting only that for a given user to be defined in our database we will need to pass their last name as a parameter into DynamoDB.
 
 To create our database, log into your AWS console, and select DynamoDB from the services menu.
 
