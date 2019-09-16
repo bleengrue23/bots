@@ -72,7 +72,7 @@ On the "Create your bot" page, select the "custom bot" option at the top.  To co
 
 After you have created your bot, you should see 'Editor' tab of the main page for your bot.
 
-<img src="Images/BotEditor.png" width="700" />
+<img src="Images/BotEditor.PNG" width="700" />
 
 As indicated by this screen, the primary thing we now need to do to finish our bot is to create its *intents*.  As you can also tell from this screen, *intents* are the things that user can do with our bot.  Becaue I want to demonstrate the ease with which we can both pull information into, as well as push information out of, our bot it will be userful to define two different things that our users will be able to with our bot.  Namely:
 
