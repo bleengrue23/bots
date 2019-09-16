@@ -4,12 +4,12 @@ This tutorial takes you through the process of building a serverless AWS Lex Cha
 The user interface is developed through the AWS Lex service.  An AWS DynamoDB is employed to hold the user's destination city, travel date, and personal data for the reservation request.  AWS Lambda functions (written in Node.js) are employed to retrieve the weather date from the OpenWeather API, and route the user's personal data into the Dynamo database.
 
 # What you will learn
-<list> 
-  How to build a Lex Chatbot UI employing custom intents and slots 
-  How to create a NoSQL DynamoDB to store and retrieve end-user data
-  How to create serverless Lambda functions to pass data into and out of a Lex Chatbot
-  How to upload Lambda Node.js dependency libraries into a Lamba function
-  How to test the functionality of your chatbot within the AWS console  
+
+  * How to build a Lex Chatbot UI employing custom intents and slots 
+  * How to create a NoSQL DynamoDB to store and retrieve end-user data
+  * How to create serverless Lambda functions to pass data into and out of a Lex Chatbot
+  * How to upload Lambda Node.js dependency libraries into a Lamba function
+  * How to test the functionality of your chatbot within the AWS console  
 
 
 # Requirements
@@ -56,7 +56,7 @@ Now we need to create a user interface that will elicit our user data.  To do th
 To get started with the creation of our Lex chatbot, select Lex from the services menu, then on the initial screen select the option to 'Create' under the main screen.  
 
 On the "Create your bot" page, select the "custom bot" option at the top.  To complete your initial bot creation you will need to:
-<list>
+
   1. Name your bot
   2. Choose an Output voice for your bot
   3. Choose a session timeout duration (how long the bot waits for input before restarting a session)
@@ -76,9 +76,9 @@ After you have created your bot, you should see 'Editor' tab of the main page fo
 
 As indicated by this screen, the primary thing we now need to do to finish our bot is to create its *intents*.  As you can also tell from this screen, *intents* are the things that user can do with our bot.  Becaue I want to demonstrate the ease with which we can both pull information into, as well as push information out of, our bot it will be userful to define two different things that our users will be able to with our bot.  Namely:
 
-<list>
-  Intent 1: Check the weather for a given city
-  Intent 2: Enter their information for flight reservation to a city
+
+  * Intent 1: Check the weather for a given city
+  * Intent 2: Enter their information for flight reservation to a city
 
 We can start off creating these intents by clicking on the "Create Intent" button the editor tab, and then selecting "create intent" again on the following pop-up menu.
  
