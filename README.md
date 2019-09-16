@@ -4,12 +4,12 @@ This tutorial takes you through the process of building a serverless AWS Lex Cha
 The user interface is developed through the AWS Lex service.  An AWS DynamoDB is employed to hold the user's destination city, travel date, and personal data for the reservation request.  AWS Lambda functions (written in Node.js) are employed to retrieve the weather date from the OpenWeather API, and route the user's personal data into the Dynamo database.
 
 # What you will learn
-<list>
-How to build a Lex Chatbot UI employing custom intents and slots 
-How to create a NoSQL DynamoDB to store and retrieve end-user data
-How to create serverless Lambda functions to pass data into and out of a Lex Chatbot
-How to upload Lambda Node.js dependency libraries into a Lamba function
-How to test the functionality of your chatbot within the AWS console  
+<list> 
+  How to build a Lex Chatbot UI employing custom intents and slots 
+  How to create a NoSQL DynamoDB to store and retrieve end-user data
+  How to create serverless Lambda functions to pass data into and out of a Lex Chatbot
+  How to upload Lambda Node.js dependency libraries into a Lamba function
+  How to test the functionality of your chatbot within the AWS console  
 </list>
 
 # Requirements
