@@ -37,7 +37,9 @@ From there, select the "Create Table" button.
 <img src="Images/CreateDatabase.PNG" width="700" />
 </p>
 </details>
+
 On the table creation screen, enter names for your table and primary key.  Use "string" for your primary key data type. And use the default settings for your table's creation. 
+
 <details><summary>DynamoDB Table Creation Settings</summary>
 <p>
 <img src="Images/TableCreationSettings.PNG" width="700" />
@@ -46,4 +48,4 @@ On the table creation screen, enter names for your table and primary key.  Use "
 
 Once you have created your table, we have completed everything necessary for the task of building a queryable database repository of user data for making flight reservations.  All you need to do is note the names you used for your table and key. Your table name will be used later in the creation of the Lambda function that will pass the user data into this database.  Your primary key name will be used in the next section when we create our when we create the intent slots for our Lex chatbot.
 
-#Step 2: Creating a Lex Chatbot
+# Step 2: Creating a Lex Chatbot
