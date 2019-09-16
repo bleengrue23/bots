@@ -20,7 +20,7 @@ For this exercise we are going to use an AWS DynamoDB database to store our user
 The primary key of a DynamoDB is required for each item held.  Additional item attributes can later be added to database on the fly.  We do not need to define them at this stage. We need only decide which user/item attribute will be used for the primary sort index of our database.  In this example I have used last-name for the primary key, denoting only that for a given user to be defined in our database we will need to pass their last name as a parameter into DynamoDB.
 
 To create our database, log into your AWS console, and select DynamoDB from the services menu:
-(github.com/bleengrue23/bots/blob/master/DynamoServices.png)
+![](github.com/bleengrue23/bots/blob/master/DynamoServices.png)
 <details><summary>Services Menu</summary>
 <p>
 ![](http://github.com/bleengrue23/bots/blob/master/DynamoServices.png)
