@@ -79,7 +79,6 @@ As indicated by this screen, the primary thing we now need to do to finish our b
 <list>
   Intent 1: Check the weather for a given city
   Intent 2: Enter their information for flight reservation to a city
- </list>
 
 We can start off creating these intents by clicking on the "Create Intent" button the editor tab, and then selecting "create intent" again on the following pop-up menu.
  
