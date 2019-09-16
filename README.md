@@ -41,7 +41,7 @@ From there, select the "Tables" submenu option on the right.  Then click on the 
 
 On the table creation screen, enter names for your table and primary key.  Use "string" for your primary key data type. And use the default settings for your table's creation. 
 
-<details><summary>DynamoDB Table Creation Settings</summary>
+<details><summary>DynamoDB Table Options</summary>
 <p>
 <img src="Images/TableCreationSettings.PNG" width="700" />
 </p>
@@ -49,4 +49,21 @@ On the table creation screen, enter names for your table and primary key.  Use "
 
 Once you have created your table, we have completed everything necessary for the task of building a queryable database repository of user data for making flight reservations.  All you need to do is note the names you used for your table and key. Your table name will be used later in the creation of the Lambda function that will pass the user data into this database.  Your primary key name will be used in the next section when we create our when we create the intent slots for our Lex chatbot.
 
-# Step 2: Creating a Lex Chatbot
+# Step 2: Create a Chatbot
+
+Now we need to create a user interface that will elicit our user data.  To do this will we will create a Lex chatbot.  The AWS Lex service will allow us to quickly create a user interface that we can use for both voice and text interactions with our users.  What follows is intended to demonstrate how we can easily both pull information into a Lex chatbot (through an external API call), as well as push data out to DynamoDB. 
+
+To get started with the creation of our Lex chatbot, select Lex from the services menu, then on the initial screen select the option to 'Create' under the main screen.  
+
+On the "Create your bot" page, select the "custom bot" option at the top.  To complete your initial bot creation you will need to:
+<list>
+  1. Name your bot
+  2. Choose an Output voice for your bot
+  3. Choose a session timeout duration (how long the bot waits for input before restarting a session)
+  4. Indicate whether the bot is to be subject to the COPPA Act
+
+<details><summary>Create Your Bot Options</summary>
+<p>
+<img src="Images/CreateYourBot.PNG" width="700" />
+</p>
+</details>
