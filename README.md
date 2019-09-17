@@ -1,29 +1,27 @@
 # Tutorial: Create a Chatbot with AWS Lex, DynamoDB, and Lambda services
-This tutorial takes you through the building a serverless AWS Lex Chatbot that will enable the user to check the current weather  for a given city, and then enter their personal data for a flight reservation to that city.
+This tutorial takes you through the building of a serverless AWS Lex Chatbot that will enable a user to check the current weather  for a given city, and then enter their personal data for a flight reservation to that city.
 
-The user interface is developed through the AWS Lex service.  An AWS DynamoDB is employed to hold the user's destination city, travel date, and personal data for the reservation request.  AWS Lambda functions (written in Node.js) are employed to retrieve the weather from the OpenWeather API, and route the user's personal data into the Dynamo database.
+The user interface is developed through the AWS Lex service.  An AWS DynamoDB is deployed to hold the user's destination city, travel date, and personal data for the reservation request.  AWS Lambda functions (written in Node.js) are employed to retrieve a city's weather forecast from the OpenWeather API, and then route the user's personal data into the Dynamo database for flight reservation to that city.
 
 # What you will learn
 
-  * How to build a Lex Chatbot UI employing custom intents and slots 
   * How to create a NoSQL DynamoDB and use it as a repository for end-user data
+  * How to build a Lex Chatbot UI employing custom intents and slots 
   * How to create serverless Lambda functions to pass data into and out of a Lex Chatbot
   * How to upload Lambda Node.js dependency libraries into a Lambda function
   * How to test the functionality of your chatbot within the AWS console  
 
 
 # Requirements
-To follow along with this tutorial you will need an AWS account, freely available here: www.aws.amazon.com, and access to the OpenWeather API, which is available through a free subscription here: www.openweathermap.org
+To follow along with this tutorial you will need an AWS account, freely available here: www.aws.amazon.com, and access to the OpenWeather API, which is available by way of a free subscription here: www.openweathermap.org
 
-While the Serverless (www.serverless.com) Framework was employed to build and deploy the version of the Node.js Lambda function that handle's the API call to the OpenWeather API, you can simply download local copies of the relevant files from this project to follow along with steps of this tutorial.  
-
-A code/text editor will also be useful for following the steps involved in the creation of our first Lambda function, but you can also simply create a local copy of the Lambda function files of this project and follow the steps with those.
+While I used the Serverless (www.serverless.com) Framework to build and deploy the versions of the Node.js Lambda functions discussed below, this framework is not covered in this tutorial as is not needed to follow the steps in this tutorial.  You can simply download local copies of the relevant javascript files from this project and use them to follow along with steps of this tutorial, or you can rebuild scripts with editor of your choice. Note,  however, you will need the dependency node files in the nodes module of the WeatherAPICall folder above to deploy and run your script in Lambda.
 
 # Step 1: Create a DynamoDB table 
 
-For this exercise we are going to use an AWS DynamoDB database to store our user data.  As a NoSQL database, DynamoDB is particularly well suited for this type of task as we need only define a 'primary key' index parameter to hold our users data.  The rest of the parameters we want to store can be added later dynamically.  
+The first step we will perform is the creation of an AWS DynamoDB database to store our user's flight reservation data.  As a NoSQL database, DynamoDB is particularly well suited for this type of task as we need only define a 'primary key' index parameter to hold our users data.  The rest of the parameters we want to store can be added later dynamically simply by adding objects that possess additional attributes.  
 
-The primary key of a DynamoDB is required for each item held.  Additional item attributes can later be added to database on an as-needed bases by pairing the attibute with an index value through JSON.  We do not need to define any additional attributes at this initial stage. We need only decide which user/item attribute will be used for the primary sort index of our database.  In this example I have used last-name for the primary key, denoting only that for a given user to be defined in our database we will need to pass their last name as a parameter into DynamoDB.
+The primary key attribute for a DynamoDB is required for each item it holds.  To create our DynamoDB we need only decide on an attribute each of our items (in our case--users) will have.  In this example I have used 'last-name' for the primary key.
 
 To create our database, log into your AWS console, and select DynamoDB from the services menu.
 
@@ -49,13 +47,15 @@ On the table creation screen, enter names for your table and primary key.  Use "
 </p>
 </details>
 
-Once you have created your table, we have completed everything necessary for the task of building a queryable database repository of user data for making flight reservations.  All you need to do is note the names you used for your table and key. Your table name will be used later in the creation of the Lambda function that will pass the user data into this database.  Your primary key name will be used in the next section when we create our when we create the intent slots for our Lex chatbot.
+Once you have created your table, we have completed everything necessary for the task of building a queryable database repository of user data.  We will need to keep track of our table name and primary key, as they will be used later in building our chat bot and Lambda functions.
 
 # Step 2: Create a Chatbot
 
-Now we need to create a user interface that will elicit our user data.  To do this will we will create a Lex chatbot.  The AWS Lex service will allow us to quickly create a user interface that we can use for both voice and text interactions with our users.  What follows is intended to demonstrate how we can easily both pull information into a Lex chatbot (through an external API call), as well as push data out to DynamoDB. 
+Our next step is to create the user interface that will interact with our users and collect the data for their reservation.  To do this will we will use the AWS Lex chatbot service.  This will allow us to quickly create a user interface that we can use for both voice and text interactions with our users.  
 
-To get started with the creation of our Lex chatbot, select Lex from the services menu, then on the initial screen select the option to 'Create' under the main screen.  
+In designing this Lex chatbot, I have attempted to demonstrate the ease with which the Lex chatbot interface allows us to both pull information into a Lex chatbot (through an external API call), as well as push data out to DynamoDB. 
+
+To get started, select Lex from the services menu, then on the initial screen select the option to 'Create' under the main screen.  
 
 On the "Create your bot" page, select the "custom bot" option at the top.  To complete your initial bot creation you will need to:
 
@@ -69,6 +69,8 @@ On the "Create your bot" page, select the "custom bot" option at the top.  To co
 <img src="Images/CreateYourBot.png" width="700" />
 </p>
 </details>
+
+With these options set you can go ahead and create your bot.
 
 # Step 3: Create a bot Intent
 
