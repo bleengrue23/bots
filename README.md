@@ -152,7 +152,7 @@ Below the slot definition of the intent, you will find the "Fulfillment" section
 
 By selecting the Lambda function option, we ensure that the a Lambda function will be called by the "Ready for Fulfillment" condition returned when our intent has the information it needs.  However, we can't select this option yet.  We first need to create the function. To do this, we will be using Node.js, though it is worth noting that a variety of other languages can be used.  I am using Node.js simply because the function is a little cleaner in its implementation regarding what is actually going on.
 
-'''javascript
+```javascript
 
 {
   "messageVersion": "1.0",
@@ -173,4 +173,4 @@ By selecting the Lambda function option, we ensure that the a Lambda function wi
     "confirmationStatus": "None"
   }
 }
-'''
+```
