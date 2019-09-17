@@ -138,7 +138,7 @@ To handle this situation we need to create sample utterances that reference our 
 
 <details><summary>Referance a slot in an utterance</summary>
 <p>
-<img src="Images/SlotUtter.png" width="700" />
+<img src="Images/SlotUtter.PNG" width="700" />
 </p>
 </details>
 
