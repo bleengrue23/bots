@@ -70,11 +70,11 @@ On the "Create your bot" page, select the "custom bot" option at the top.  To co
 
 # Step 3: Create Intents
 
-After you have created your bot, you should see 'Editor' tab of the main page for your bot.
+After you have created your bot, you should see the 'Editor' tab of the main page for your bot, as shown here.
 
 <img src="Images/BotEditor.PNG" width="700" />
 
-As indicated by this screen, the primary thing we now need to do to finish our bot is to create its *intents*.  As you can also tell from this screen, *intents* are the things that user can do with our bot.  Becaue I want to demonstrate the ease with which we can both pull information into, as well as push information out of, our bot it will be userful to define two different things that our users will be able to with our bot.  Namely:
+As indicated by this screen, the primary thing we now need to do to set up our bot is to create its *intents*.  As you can also tell from this screen, *intents* are the things that user can do with our bot.  Becaue I want to demonstrate the ease with which we can both pull information into, as well as push information out of, our bot it will be userful to define two different things that our users will be able to with our bot.  Namely:
 
 
   * Intent 1: Check the weather for a given city
@@ -84,7 +84,7 @@ We can start off creating these intents by clicking on the "Create Intent" butto
 
 <img src="Images/IntentsEditor.PNG" width="700" />
 
-For this tutorial, we will not using an initialization Lambda function. We will assume the user engages our application as an authorized user knowing its purpose, namely allowing them to check weather and make flight reservations.  However we do need to specify some initial *utterances.
+For this tutorial, we will not be using an initialization Lambda function. We will assume the user engages our application as an authorized user knowing its purpose, namely allowing them to check weather and make flight reservations.  However we do need to specify some initial *utterances.
 
 A Lex utterance is the verbal or typed input that lets our bot know which of our intents (the things our bot can do) the user wants to engage with.  To activate the intent for checking the weather, we need to specify what kinds of input a typical user would use to let someone know they want a weather forecast, such as "Check weather"  
 
