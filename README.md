@@ -82,7 +82,7 @@ As indicated by this screen, the primary thing we now need to do to finish our b
 
 We can start off creating these intents by clicking on the "Create Intent" button on the editor tab, and then selecting "create intent" again on the following pop-up menu, and then giving our first intent a name.  Once we have named our intent, we are automatically taken to the editor for the intent.
 
-![] (Images/IntentsEditor.png)
+![] (Images/IntentsEditor.PNG)
 
 For this tutorial, we will not using an initialization Lambda function. We will assume the user engages our application as an authorized user knowing its purpose, namely allowing them to check weather and make flight reservations.  However we do need to specify some initial *utterances.
 
