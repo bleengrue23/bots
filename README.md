@@ -101,4 +101,13 @@ Additionally, we should keep in mind when creating our bot that a given user wil
 Now that we have specified the utterances that let's our bot know which of our two intents that our user wants to use (namely to get a weather forecast for a particular city, we need to define precisely what information the user needs to give us to fulfill this intent. **Slots** define the information that is needed from the user to fulfill the intent.  For our current intent, the necessary information we need to gather from the user is the *city* they are interested in.  Once we have that information, we can return to the user the weather forecast for the city they are interested in traveling to.  You create slots by naming them, defining their data type, and associating them with a specific information request in Intents editor's slot section, shown here:
 
 <img src="Images/Slots.PNG" width="700" />
+
+The slot name can be of your choosing, for this I simply use "city".  For the type, there is a pre-populated pull-down menu of options defined by Amazon. This aids with potential formatting issues that might arise when passing the value into other applications and data sources. For this example, you should simply choose the "US_CITY" type.  The question prompt is also a matter of choice, as it need only be something that is reasonably certain to get an appropriate response from the user.  In our case something along the line of "What city are you interested in?" should suffice to get an appropriate respones. 
+
+After filling in these three fields, click on the "+" symbol to add the slot to the intent.
  
+<details><summary>Add Slot to an Intent</summary>
+<p>
+<img src="Images/AddSlot.png" width="700" />
+</p>
+</details>
