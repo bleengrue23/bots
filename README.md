@@ -92,7 +92,7 @@ Additionally, we should keep in mind when creating our bot that a given user wil
 
 <details><summary>Add Utterance to an Intent</summary>
 <p>
-<img src="Images/AddUtterance.PNG" width="700" />
+<img src="Images/AddUtterance.png" width="700" />
 </p>
 </details>
  
