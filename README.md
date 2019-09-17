@@ -70,7 +70,7 @@ On the "Create your bot" page, select the "custom bot" option at the top.  To co
 </p>
 </details>
 
-# Step 3: Create Intents
+# Step 3: Create a bot Intent
 
 After you have created your bot, you should see the 'Editor' tab of the main page for your bot, as shown here.
 
@@ -111,3 +111,7 @@ After filling in these three fields, click on the "+" symbol to add the slot to 
 <img src="Images/AddSlot.png" width="700" />
 </p>
 </details>
+
+#Build and test your chat bot
+
+After you have added your slot to the intent and saved the intent, you are ready 
