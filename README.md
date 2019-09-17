@@ -130,7 +130,7 @@ The response that you want to elicity with input similar to your initially speci
 
 If your initial text submission does not elicit your slot question, you should add it to your list of utterances.
 
-Before moving to the fulfillment of our intent through a Lambda function, test your bot with the following input: *Want a vacation to Las Vegas
+Before moving to the fulfillment of our intent through a Lambda function, test your bot with the following input: *Want a vacation to Las Vegas*
 
 Here our initial utterance already provides the information needed for slot to fulfill the intent, but our bot doesn't realize it.  It is only primed to look for the slot value in response to the slot question. To handle this situation we can actually create sample utterances that reference our slot, which tells our bot that the intent is already ready for fulfillment, without the prompt defined in out in the slot definition. To let Lex know how our slot value may occur in an intent triggering utterance, simply create an utterance with your slot name ("city" in our example) in "{}" in the utterance--for example: "Need a vacation to {city}".
 
