@@ -112,6 +112,20 @@ After filling in these three fields, click on the "+" symbol to add the slot to 
 </p>
 </details>
 
-#Build and test your chat bot
+# Step 4: Build and test your chat bot
 
-After you have added your slot to the intent and saved the intent, you are ready 
+After you have added your slot to the intent and saved the intent, you are ready to create the initial test build of your chat bot and test its functionality.  The test build is created by selecting the build button at the top editor.  Once the build is completed, you should test your bot by typing some text into the test dialog box to see how it will respond to sample user input.
+
+<details><summary>Create a Test bot build</summary>
+<p>
+<img src="Images/TestBuild.PNG" width="700" />
+</p>
+</details>
+
+You should test your bot using utterances close to your defined utterances, but with small variations.  The built-in AI capabilities of the Lex bot builder should be able to detect utterances similar enough to the specified ones to that small variations shouldn't matter. 
+
+The response that you want to elicity with input similar to your initially specified utterances is the question defined in your slot.  The slot question response should assure your bot will get the information needed to fulfill the intent.  Given that we have not yet specified how the bot should fulfill this intent, at this stage a successful test should return a notification that the intent is ready for fulfillment.  A successful test should look something like the following.
+
+<img src="Images/TestCheck.PNG" width="700" />
+
+If your initial text submission does not elicit your slot question, you should add it to your list of utterances.
