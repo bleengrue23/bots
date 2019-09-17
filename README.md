@@ -1,7 +1,7 @@
 # Tutorial: Create a Chatbot with AWS Lex, DynamoDB, and Lambda services
 This tutorial takes you through the building of a serverless AWS Lex Chatbot that will enable a user to check the current weather  for a given city, and then enter their personal data for a flight reservation to that city.
 
-The user interface is developed through the AWS Lex service.  An AWS DynamoDB is deployed to hold the user's destination city, travel date, and personal data for the reservation request.  AWS Lambda functions (written in Node.js) are employed to retrieve a city's weather forecast from the OpenWeather API, and then route the user's personal data into the Dynamo database for flight reservation to that city.
+The user interface is developed through the AWS Lex service.  An AWS DynamoDB is deployed to hold the user's destination city, travel date, and personal data for the reservation request.  AWS Lambda functions (written in Node.js) are employed to retrieve a city's weather forecast from the OpenWeather API, and then route the user's personal data into the Dynamo database for a flight reservation to that city.
 
 # What you will learn
 
@@ -78,23 +78,29 @@ After you have created your bot, you should see the 'Editor' tab of the main pag
 
 <img src="Images/BotEditor.PNG" width="700" />
 
-As you can see, the first thing we now need to do to make our bot functional is to create its *intents*.  As noted on the Lex editor page, *intents* are the things that user can do with our bot.  Becaue I want to demonstrate the ease with which we can both pull/push data to/from our bot, it will be userful to define two different sorts of things our users can do with our bot.  Namely:
+As you can see, the first thing we now need to do to make our bot functional is to create its *intents*.  As noted on the Lex editor page:
+
+*Lex Intent*: something the user can do with a bot  
+
+Becaue I want to demonstrate the ease with which we can both pull/push data to/from our bot, it will be userful to define two different sorts of things our users can do with our bot.  Namely:
 
   * Intent 1: Check the weather for a given city
   * Intent 2: Enter their information for flight reservation to a city
 
-Creating each of these intents is a seperate step in our build process.  In the remaind of this step we will concentrate on building the first intent--we want to set up our chatbot so that it service user requests to check the weather for a given city.  To accomplish this, start by clicking the "Create Intent" button on the editor tab, and then selecting 'create' (rather than 'import') on the following pop-up menu, and then giving our intent a name (I have used "CheckWeather").  Once we have named our intent, we are automatically taken to its editor.
+Creating each of these intents is a seperate step in our build process.  In the remainder of this step we will concentrate on building the first intent--checking the weather for a given city.  To accomplish this, start by clicking the "Create Intent" button on the editor tab, and then selecting 'create' (rather than 'import') on the following pop-up menu. Following that, give the intent a name (I have used "CheckWeather").  Once intent is named and created, we are taken to its editor.
 
 <img src="Images/IntentsEditor.png" width="700" />
 
-Here you can see entry parameters for defining *utterances, an initialization, and slots*. For this tutorial, we will not be using an initialization function. We will assume the user came to our application as an authorized user knowing its purpose, namely allowing them to check weather forecasts and make flight reservations.  However one always needs to specify *utterances* and at least one *slot* for an intent.
+Here you can see entry parameters for defining *utterances, an initialization, and slots*. For this tutorial, we will not be using an initialization function. We will assume the user came to our application as an authorized user knowing its purpose, namely allowing one to check weather forecasts and make flight reservations.  However one always needs to specify *utterances* and at least one *slot* for an intent.
 
 *Lex Utterances*: an utterance is an example of a user input (voice or text) that should start an intent
 *Lex Slot*: a slot defines the type of information your bot needs to fulfill an intent
 
-A Lex utterance is the verbal or typed input that lets our bot know which of our intents (the things our bot can do) the user wants to engage with.  To activate the intent for checking the weather, we need to specify what kinds of input a typical user would use to let someone know they want a weather forecast, such as "Check weather"  
+A Lex utterance is the verbal or typed input that lets our bot know which of our intents the user wants.  To activate the intent for checking the weather, we need to specify what kinds of things a user would say or type when they want to check the weather, for example: "Check weather", "Get forecast", "What's the temperature", etc.  You should always supply multiple potential utterances.  The more you specify, the better Lex's built-in AI will be able to determine that a given unspecified input, such as "How hot is it?" is an appropriate activating utterance for out intent.  
 
-Additionally, we should keep in mind when creating our bot that a given user will typically want to start off their interaction with our application by checking the weather for a given city first, before they book a flight there.  Because of this, in addition specifying utterances like "Check the weather", and "Get forecast", we also may wish to include some simple introductory phrases, such as "Hello". Each of these utterances should be entered as a seperate line, and then added to the list of intent activators by clicking on the "+" mark.
+Additionally, we should keep in mind when creating our bot that a given user will typically want to start off their interaction with our application by checking the weather for a given city first, before they book a flight there.  So the CheckWeather intent is a good intent to use for your default intent. A default intent can be created by simply using introductory phrases, such as "Hello" as part of the intent's sample utterances. 
+
+Each of these utterances should be entered as a seperate line, and then added to the list of intent activators by clicking on the "+" mark.
 
 <details><summary>Add Utterance to an Intent</summary>
 <p>
@@ -102,13 +108,15 @@ Additionally, we should keep in mind when creating our bot that a given user wil
 </p>
 </details>
  
-Now that we have specified the utterances that let's our bot know which of our two intents that our user wants to use (namely to get a weather forecast for a particular city, we need to define precisely what information the user needs to give us to fulfill this intent. **Slots** define the information that is needed from the user to fulfill the intent.  For our current intent, the necessary information we need to gather from the user is the *city* they are interested in.  Once we have that information, we can return to the user the weather forecast for the city they are interested in traveling to.  You create slots by naming them, defining their data type, and associating them with a specific information request in Intents editor's slot section, shown here:
+With the activating utterances specified, we need to define precisely what information the user needs to provide to fulfill this intent. This is what is defined in the *slot* parameter's definition.  For our current intent, the necessary information we need to gather from the user is the *city* they are interested in.  Once we have that information, we know which weather forecast to retrieve for them.  
+
+You create slots by naming them, defining their data type, and associating them with a specific information request in editor's slot section, shown here:
 
 <img src="Images/Slots.PNG" width="700" />
 
-The slot name can be of your choosing, for this I simply use "city".  For the type, there is a pre-populated pull-down menu of options defined by Amazon. This aids with potential formatting issues that might arise when passing the value into other applications and data sources. For this example, you should simply choose the "US_CITY" type.  The question prompt is also a matter of choice, as it need only be something that is reasonably certain to get an appropriate response from the user.  In our case something along the line of "What city are you interested in?" should suffice to get an appropriate respones. 
+The slot name can be of your choosing, for this I simply use "city".  For the type, there is a pre-populated pull-down menu of options defined by Amazon. This aids with potential formatting issues that might arise when passing the values. For this example, you should simply choose the "US_CITY" type.  The question prompt is also a matter of choice, as it need only be something that is reasonably certain to get the needed data from the user.  In our case something along the line of "What city are you interested in?" should suffice. 
 
-After filling in these three fields, click on the "+" symbol to add the slot to the intent.
+After filling in these fields, click on the "+" symbol to add the slot to the intent.
  
 <details><summary>Add Slot to an Intent</summary>
 <p>
@@ -118,7 +126,7 @@ After filling in these three fields, click on the "+" symbol to add the slot to 
 
 # Step 4: Build and test your chat bot
 
-After you have added your slot to the intent and saved the intent, you are ready to create the initial test build of your chat bot and test its functionality.  The test build is created by selecting the build button at the top editor.  Once the build is completed, you should test your bot by typing some text into the test dialog box to see how it will respond to sample user input.
+After you have added your utterances and slot to the intent, save it.  You are then ready to create the a test build of your chat bot and test its functionality.  The test build is created by selecting the *build* button at the top editor.  Once the build is completed, you test your bot by typing input text into the test dialog box, and viewing the bot's responses.
 
 <details><summary>Create a Test bot build</summary>
 <p>
@@ -126,19 +134,23 @@ After you have added your slot to the intent and saved the intent, you are ready
 </p>
 </details>
 
-You should test your bot using utterances close to your defined utterances, but with small variations.  The built-in AI capabilities of the Lex bot builder should be able to detect utterances similar enough to the specified ones to that small variations shouldn't matter. 
+You should test your bot using utterances close to your defined utterances, but with small variations.  The built-in AI capabilities of the Lex bot builder should be able to detect utterances similar enough to the specified ones to that small variations don't matter. 
 
-The response that you want to elicity with input similar to your initially specified utterances is the question defined in your slot.  The slot question response should assure your bot will get the information needed to fulfill the intent.  Given that we have not yet specified how the bot should fulfill this intent, at this stage a successful test should return a notification that the intent is **ready for fulfillment**.  A successful test should look something like the following.
+The response that you want to elicit with your test at this point is the bot reaching a **ready for fulfillment** state. This signifies that the bot believes it has information necessary to complete the intent.  A successful test should look something like the following.
 
 <img src="Images/TestCheck.PNG" width="700" />
 
 If your initial text submission does not elicit your slot question, you should add it to your list of utterances.
 
-Before moving to the fulfillment of our intent through a Lambda function, test your bot with the following input: *Want a vacation to Las Vegas*
+# Step 5: Add a slot-referencing utterance to your Intent
 
-Here our initial utterance already provides the information needed to fulfill the intent, but our bot doesn't realize it.  This is because the bot has not yet learned to look for slot value in an initial triggering utterance.  It is only primed to look for the slot value in response to the slot question. 
+Before moving to the fulfillment stage of build, first test your bot with the following input: *Want a vacation to Las Vegas*
 
-To handle this situation we need to create sample utterances that reference our slot, which tells our bot that the intent may already already have the information it requires in the initial utterance, without the prompt defined in our slot definition. To let Lex know how our slot value may occur in an utterance, we can simply create a sample utterance with the slot name ("city" in our example) in "{}" in the utterance--for example: "Need a vacation to {city}".
+Here our initial utterance already provides the information needed to fulfill the intent, but our bot doesn't realize it.  This is because the bot has not yet learned to look for the slot value in an utterance.  It is only primed to look for the slot value in response to the slot question. 
+
+To enable the bot to handle this situation correctly, we need to create sample utterances that reference our slot. This tells our bot that the intent may already already have the information it requires in the initial triggering utterance.  As such there is no need to  prompt for the slot value with slot question. 
+
+To let Lex know how our slot value may occur in an utterance, we can simply create a sample utterance with the slot name ("city" in our example) in "{}" in the utterance--for example: "Need a vacation to {city}".
 
 <details><summary>Referance a slot in an utterance</summary>
 <p>
@@ -146,15 +158,21 @@ To handle this situation we need to create sample utterances that reference our 
 </p>
 </details>
 
-Once you have added some utterances that reference your slot to your intent, you should save your intent again, rebuild your bot, and then test it again with "Want a vacation to Las Vegas".  This time you should see the response "Ready for fulfillment" returned.  This tells you that the slot value will be immediately passed to our Lambda function without the need for a response to question put in out slot question.
+Once you have added some utterances that reference your slot, save your intent again, rebuild your bot, and then test it again with "Want a vacation to Las Vegas".  
 
-# Step 5: Fulfill your Intent with a Lambda function
+This time you should see the response "Ready for fulfillment" immediately returned.  
 
-Below the slot definition of the intent, you will find the "Fulfillment" section for our intent, and the radio button option for the option of calling a Lambda function to fulfill the intent.  
+# Step 5: Build a function to fulfill your intent
+
+Below the slot definition of the intent, you will find the "Fulfillment" section for our intent, and the radio button option for using a Lambda function for the fulfillment stage.  
 
 <img src="Images/Fulfill.png" width="700" />
 
-By selecting the Lambda function option, we ensure that the a Lambda function will be called by the "Ready for Fulfillment" condition returned when our intent has the information it needs.  However, we can't select this option yet.  We first need to create the function. To do this, we will be using Node.js, though it is worth noting that a variety of other languages can be used.  I am using Node.js simply because the function is a little cleaner in its implementation regarding what is actually going on.  But before we move to our functions construction, it is furth worth noting what is being passed onto in terms of the JSON name/value pairs:
+Selecting the Lambda function option tells Lex to call the Lambda function once it has reached the the "Ready for Fulfillment" state. However, selecting the Lambda function option for fulfillment at this point won't get us very far.  We first need to create the Lambda function. 
+
+To do this, we will be using Node.js, though it is worth noting that a variety of other languages can be used.  I use Node.js here simply because the function is a little cleaner in its implementation regarding what it is actually doing.  But before we move to our function's construction, it is first worth pausing to note what is passed into to our Lambda  in terms of the JSON name/value pairs:
+
+*Lex output to Lambda
 
 ```python
 
@@ -178,13 +196,13 @@ By selecting the Lambda function option, we ensure that the a Lambda function wi
   }
 }
 ```
-Aside from being able to use this to construct test events for our Lambda function, examining the format of what is being passed into our function tells us how we can pull the value of interest to us (the slot value) out of it. Namely, by way of reference to:
+Aside from being able to use this to construct test events for our Lambda function, examining the format of what is being passed into our function tells us how we can pull the value of interest to us (the slot value) out of it. Namely, by way of reference to the slots parameter of the currentIntent:
 
  **currentIntent.slots.mySlotName**  
  
-Recall, also, that for us, the slot value of interest is a city name.  Once we have the city name, we can actually just pass that into an API call that will return will return the weather conditions and forecast for our city of interest.  We then construct a repository for the data in the API response.  Finally we construct a statement to return to our Lex bot that is built out of the data in our API response repository.  
+Recall, also, that for us, the slot value of interest is a city name.  Once we have the city name, we can actually just pass that into an API call that will return will return the weather conditions and forecast for our city of interest.  We then construct a repository for the data returned by the API response.  Finally we construct a statement to return to our Lex bot that is built out of the data in our API response repository.  
 
-We can achieve all of this in Node.js with the following:
+We can achieve all of this in Node.js with just the following:
  
 ```javascript
 
@@ -198,7 +216,7 @@ We can achieve all of this in Node.js with the following:
     const answer = "The temperature is " + data.main.temp + "degrees and Humidity is " + data.main.humidity + "% with " + data.weather[0].description + " expected. Would you like to make a flight reservation to this city?";
     
 ```
-We are not done with our function yet, we still need to package our "answer" in a form that will be accessible to Lex.  But before constructing our Lex response, there are a immediately a couple of things worth noting about our function so far. 
+This is all that it takes to codewise to build the response that we want to return to lex.  We are not done with our function yet, how we still need to package our "answer" in a form that will be accessible to Lex.  But before constructing our Lex response, there are a immediately a couple of things worth noting about our function so far. 
 
 First, to implement this tutorial on your **you will need to replace the APPID above with your own** (freely available OpenWeather as noted at the beginning of this tutorial).
 
@@ -218,6 +236,40 @@ return {
           "content": answer
         }
 ```
-The "type" and "fulfillmentState" parameters here are simply telling Lex that with this data our intent has become fulfilled and can move to a closed state.  The bulk of the work being done here is by way of simply passing the 'answer' constructed in the first part of our function into Lex by way of the 'content' parameter.
+The return function embeds the JSON format that responses to Lex will generally need to take. The "type" and "fulfillmentState" parameters here are simply telling Lex that with this data our intent has become fulfilled and can move to a closed state.  The bulk of the work being done here is by way of simply passing the 'answer' constructed in the first part of our function into Lex by way of the 'content' parameter.
 
-The only remaining bits our function now requires
+The only remaining bits our function now requires is an invocation of the axios library, the construction of handler that calls the main function when data is passed into it from Lex, and an error condition check.  The full text of the script we need is as follows:
+
+```javascript
+
+'use strict';
+
+const axios = require("axios");
+
+module.exports.getWeather = async (event) => {
+  const city = event.currentIntent.slots["city"];
+  const url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&APPID=e9ae370e1961e718702dd3295e97da23";
+
+  try {
+    const response = await axios.get(url);
+    const data = response.data;
+
+    const answer = "The temperature is " + data.main.temp + "degrees and Humidity is " + data.main.humidity + "% with " + data.weather[0].description + " expected. Would you like to make a flight reservation to this city?";
+    
+    return {
+      "sessionAttributes": {},
+      "dialogAction": {
+        "type": "Close",
+        "fulfillmentState": "Fulfilled",
+        "message": {
+          "contentType": "PlainText",
+          "content": answer
+        }
+      }
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+```
+
