@@ -17,6 +17,8 @@ To follow along with this tutorial all that is required is an AWS account, freel
 
 While the Serverless (www.serverless.com) Framework was employed to build and deploy the version of the Node.js Lambda function that handle's the API call to the OpenWeather API, you can simply download local copies of the relevant files from this project to follow along with steps of this tutorial.  
 
+A code/text editor will also be useful for following the steps involved in the creation of our first Lambda function, but you can also simply create a local copy of the Lambda function files of this project and follow the steps with those.
+
 # Step 1: Create a DynamoDB table 
 
 For this exercise we are going to use an AWS DynamoDB database to store our user data.  As a NoSQL database, DynamoDB is particularly well suited for this type of task as we need only define a 'primary key' index parameter to hold our users data.  The rest of the parameters we want to store can be added later dynamically.  
@@ -82,7 +84,7 @@ As indicated by this screen, the primary thing we now need to do to set up our b
 
 We can start off creating these intents by clicking on the "Create Intent" button on the editor tab, and then selecting "create intent" again on the following pop-up menu, and then giving our first intent a name.  Once we have named our intent, we are automatically taken to the editor for the intent.
 
-<img src="Images/IntentsEditor.PNG" width="700" />
+<img src="Images/IntentsEditor.png" width="700" />
 
 For this tutorial, we will not be using an initialization Lambda function. We will assume the user engages our application as an authorized user knowing its purpose, namely allowing them to check weather and make flight reservations.  However we do need to specify some initial *utterances.
 
@@ -96,5 +98,7 @@ Additionally, we should keep in mind when creating our bot that a given user wil
 </p>
 </details>
  
+Now that we have specified the utterances that let's our bot know which of our two intents that our user wants to use (namely to get a weather forecast for a particular city, we need to define precisely what information the user needs to give us to fulfill this intent. **Slots** define the information that is needed from the user to fulfill the intent.  For our current intent, the necessary information we need to gather from the user is the *city* they are interested in.  Once we have that information, we can return to the user the weather forecast for the city they are interested in traveling to.  You create slots by naming them, defining their data type, and associating them with a specific information request in Intents editor's slot section, shown here:
 
+<img src="Images/AddUtterance.png" width="700" />
  
