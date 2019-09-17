@@ -80,7 +80,21 @@ As indicated by this screen, the primary thing we now need to do to finish our b
   * Intent 1: Check the weather for a given city
   * Intent 2: Enter their information for flight reservation to a city
 
-We can start off creating these intents by clicking on the "Create Intent" button the editor tab, and then selecting "create intent" again on the following pop-up menu.
+We can start off creating these intents by clicking on the "Create Intent" button on the editor tab, and then selecting "create intent" again on the following pop-up menu, and then giving our first intent a name.  Once we have named our intent, we are automatically taken to the editor for the intent.
+
+![] (Images/IntentsEditor.png)
+
+For this tutorial, we will not using an initialization Lambda function. We will assume the user engages our application as an authorized user knowing its purpose, namely allowing them to check weather and make flight reservations.  However we do need to specify some initial *utterances.
+
+A Lex utterance is the verbal or typed input that lets our bot know which of our intents (the things our bot can do) the user wants to engage with.  To activate the intent for checking the weather, we need to specify what kinds of input a typical user would use to let someone know they want a weather forecast, such as "Check weather"  
+
+Additionally, we should keep in mind when creating our bot that a given user will typically want to start off their interaction with our application by checking the weather for a given city first, before they book a flight there.  Because of this, in addition specifying utterances like "Check the weather", and "Get forecast", we also may wish to include some simple introductory phrases, such as "Hello". Each of these utterances should be entered as a seperate line, and then added to the list of intent activators by clicking on the "+" mark.
+
+<details><summary>Add Utterance to an Intent</summary>
+<p>
+<img src="Images/AddUtterance.PNG" width="700" />
+</p>
+</details>
  
 
  
