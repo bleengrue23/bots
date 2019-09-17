@@ -214,4 +214,6 @@ return {
           "content": answer
         }
 ```
-The "type" and "fulfillmentState" parameters here are simply telling Lex that with this data our intent has become fulfilled and can move to a closed state.        
+The "type" and "fulfillmentState" parameters here are simply telling Lex that with this data our intent has become fulfilled and can move to a closed state.  The bulk of the work being done here is by way of simply passing the 'answer' constructed in the first part of our function into Lex by way of the 'content' parameter.
+
+The only remaining bits our function now requires
