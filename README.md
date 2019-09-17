@@ -124,8 +124,20 @@ After you have added your slot to the intent and saved the intent, you are ready
 
 You should test your bot using utterances close to your defined utterances, but with small variations.  The built-in AI capabilities of the Lex bot builder should be able to detect utterances similar enough to the specified ones to that small variations shouldn't matter. 
 
-The response that you want to elicity with input similar to your initially specified utterances is the question defined in your slot.  The slot question response should assure your bot will get the information needed to fulfill the intent.  Given that we have not yet specified how the bot should fulfill this intent, at this stage a successful test should return a notification that the intent is ready for fulfillment.  A successful test should look something like the following.
+The response that you want to elicity with input similar to your initially specified utterances is the question defined in your slot.  The slot question response should assure your bot will get the information needed to fulfill the intent.  Given that we have not yet specified how the bot should fulfill this intent, at this stage a successful test should return a notification that the intent is **ready for fulfillment**.  A successful test should look something like the following.
 
 <img src="Images/TestCheck.PNG" width="700" />
 
 If your initial text submission does not elicit your slot question, you should add it to your list of utterances.
+
+Before moving to the fulfillment of our intent through a Lambda function, test your bot with the following input: *Want a vacation to Las Vegas
+
+Here our initial utterance already provides the information needed for slot to fulfill the intent, but our bot doesn't realize it.  It is only primed to look for the slot value in response to the slot question. To handle this situation we can actually create sample utterances that reference our slot, which tells our bot that the intent is already ready for fulfillment, without the prompt defined in out in the slot definition. To let Lex know how our slot value may occur in an intent triggering utterance, simply create an utterance with your slot name ("city" in our example) in "{}" in the utterance--for example: "Need a vacation to {city}".
+
+<details><summary>Referance a slot in an utterance</summary>
+<p>
+<img src="Images/SlotUtter.png" width="700" />
+</p>
+</details>
+
+Once you have added some utterances that reference your slot to your intent, you should save your intent again, rebuild your bot, and then test it again with "Want a vacation to Las Vegas".  This time you should see the response "Ready for fulfillment" returned.  This tells you that the slot value will be immediately passed to our function without the need for a response to question put in out slot question.
