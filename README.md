@@ -142,4 +142,10 @@ To handle this situation we need to create sample utterances that reference our 
 </p>
 </details>
 
-Once you have added some utterances that reference your slot to your intent, you should save your intent again, rebuild your bot, and then test it again with "Want a vacation to Las Vegas".  This time you should see the response "Ready for fulfillment" returned.  This tells you that the slot value will be immediately passed to our function without the need for a response to question put in out slot question.
+Once you have added some utterances that reference your slot to your intent, you should save your intent again, rebuild your bot, and then test it again with "Want a vacation to Las Vegas".  This time you should see the response "Ready for fulfillment" returned.  This tells you that the slot value will be immediately passed to our Lambda function without the need for a response to question put in out slot question.
+
+# Step 5: Fulfill your Intent with a Lambda function
+
+Below the slot definition of the intent, you will find the "Fulfillment" section for our intent, and the radio button option for the option of calling a Lambda function to fulfill the intent.  
+
+<img src="Images/Fulfill.PNG" width="700" />
