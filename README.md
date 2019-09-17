@@ -100,5 +100,5 @@ Additionally, we should keep in mind when creating our bot that a given user wil
  
 Now that we have specified the utterances that let's our bot know which of our two intents that our user wants to use (namely to get a weather forecast for a particular city, we need to define precisely what information the user needs to give us to fulfill this intent. **Slots** define the information that is needed from the user to fulfill the intent.  For our current intent, the necessary information we need to gather from the user is the *city* they are interested in.  Once we have that information, we can return to the user the weather forecast for the city they are interested in traveling to.  You create slots by naming them, defining their data type, and associating them with a specific information request in Intents editor's slot section, shown here:
 
-<img src="Images/Slots.png" width="700" />
+<img src="Images/Slots.PNG" width="700" />
  
