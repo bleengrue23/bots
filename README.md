@@ -25,7 +25,7 @@ The primary key of a DynamoDB is required for each item held.  Additional item a
 
 To create our database, log into your AWS console, and select DynamoDB from the services menu.
 
-<details><summary>Services Menu</summary>
+<details><summary>Engage an AWS Service</summary>
 <p>
 <img src="Images/DynamoServices.png" width="700" />
 </p>
@@ -41,7 +41,7 @@ From there, select the "Tables" submenu option on the right.  Then click on the 
 
 On the table creation screen, enter names for your table and primary key.  Use "string" for your primary key data type. And use the default settings for your table's creation. 
 
-<details><summary>DynamoDB Table Options</summary>
+<details><summary>Set DynamoDB Table Options</summary>
 <p>
 <img src="Images/TableCreationSettings.PNG" width="700" />
 </p>
@@ -62,7 +62,7 @@ On the "Create your bot" page, select the "custom bot" option at the top.  To co
   3. Choose a session timeout duration (how long the bot waits for input before restarting a session)
   4. Indicate whether the bot is to be subject to the COPPA Act
 
-<details><summary>Create Your Bot Options</summary>
+<details><summary>Set Bot Creation Options</summary>
 <p>
 <img src="Images/CreateYourBot.png" width="700" />
 </p>
