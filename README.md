@@ -150,9 +150,9 @@ Below the slot definition of the intent, you will find the "Fulfillment" section
 
 <img src="Images/Fulfill.png" width="700" />
 
-By selecting the Lambda function option, we ensure that the a Lambda function will be called by the "Ready for Fulfillment" condition returned when our intent has the information it needs.  However, we can't select this option yet.  We first need to create the function. To do this, we will be using Node.js, though it is worth noting that a variety of other languages can be used.  I am using Node.js simply because the function is a little cleaner in its implementation regarding what is actually going on.
+By selecting the Lambda function option, we ensure that the a Lambda function will be called by the "Ready for Fulfillment" condition returned when our intent has the information it needs.  However, we can't select this option yet.  We first need to create the function. To do this, we will be using Node.js, though it is worth noting that a variety of other languages can be used.  I am using Node.js simply because the function is a little cleaner in its implementation regarding what is actually going on.  But before we move to our functions construction, it is furth worth noting what is being passed onto in terms of the JSON name/value pairs:
 
-```javascript
+```python
 
 {
   "messageVersion": "1.0",
@@ -174,3 +174,44 @@ By selecting the Lambda function option, we ensure that the a Lambda function wi
   }
 }
 ```
+Aside from being able to use this to construct test events for our Lambda function, examining the format of what is being passed into our function tells us how we can pull the value of interest to us (the slot value) out of it. Namely, by way of reference to:
+
+ **currentIntent.slots.mySlotName**  
+ 
+Recall, also, that for us, the slot value of interest is a city name.  Once we have the city name, we can actually just pass that into an API call that will return will return the weather conditions and forecast for our city of interest.  We then construct a repository for the data in the API response.  Finally we construct a statement to return to our Lex bot that is built out of the data in our API response repository.  
+
+We can achieve all of this in Node.js with the following:
+ 
+```javascript
+
+  const city = event.currentIntent.slots["city"];
+  const url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&APPID=e9ae370e1961e718702dd3295e97da23";
+
+  try {
+    const response = await axios.get(url);
+    const data = response.data;
+
+    const answer = "The temperature is " + data.main.temp + "degrees and Humidity is " + data.main.humidity + "% with " + data.weather[0].description + " expected. Would you like to make a flight reservation to this city?";
+    
+```
+We are not done with our function yet, we still need to package our "answer" in a form that will be accessible to Lex.  But before constructing our Lex response, there are a immediately a couple of things worth noting about our function so far. 
+
+First, to implement this tutorial on your **you will need to replace the APPID above with your own** (freely available OpenWeather as noted at the beginning of this tutorial).
+
+Second, the above code relies on the *axios* node addition to the standard javascript library.  This entails some additional work will be needed on our part when implementing this code in AWS Lambda, which we will detail below.
+
+Now to complete our function we need to construct the response we will return to Lex.  This can be accomplished with the following code:
+
+```javascript
+
+return {
+      "sessionAttributes": {},
+      "dialogAction": {
+        "type": "Close",
+        "fulfillmentState": "Fulfilled",
+        "message": {
+          "contentType": "PlainText",
+          "content": answer
+        }
+```
+The "type" and "fulfillmentState" parameters here are simply telling Lex that with this data our intent has become fulfilled and can move to a closed state.        
