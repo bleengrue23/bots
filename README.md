@@ -17,7 +17,7 @@ To follow along with this tutorial all that is required is an AWS account, freel
 
 While the Serverless (www.serverless.com) Framework was employed to build and deploy the version of the Node.js Lambda function that handle's the API call to the OpenWeather API, you can simply download local copies of the relevant files from this project to follow along with steps of this tutorial.  
 
-# Step 1: Create a DynamoDB table for your reservation request
+# Step 1: Create a DynamoDB table 
 
 For this exercise we are going to use an AWS DynamoDB database to store our user data.  As a NoSQL database, DynamoDB is particularly well suited for this type of task as we need only define a 'primary key' index parameter to hold our users data.  The rest of the parameters we want to store can be added later dynamically.  
 
