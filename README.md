@@ -132,7 +132,9 @@ If your initial text submission does not elicit your slot question, you should a
 
 Before moving to the fulfillment of our intent through a Lambda function, test your bot with the following input: *Want a vacation to Las Vegas*
 
-Here our initial utterance already provides the information needed for slot to fulfill the intent, but our bot doesn't realize it.  It is only primed to look for the slot value in response to the slot question. To handle this situation we can actually create sample utterances that reference our slot, which tells our bot that the intent is already ready for fulfillment, without the prompt defined in out in the slot definition. To let Lex know how our slot value may occur in an intent triggering utterance, simply create an utterance with your slot name ("city" in our example) in "{}" in the utterance--for example: "Need a vacation to {city}".
+Here our initial utterance already provides the information needed to fulfill the intent, but our bot doesn't realize it.  This is because the bot has not yet learned to look for slot value in an initial triggering utterance.  It is only primed to look for the slot value in response to the slot question. 
+
+To handle this situation we need to create sample utterances that reference our slot, which tells our bot that the intent may already already have the information it requires in the initial utterance, without the prompt defined in our slot definition. To let Lex know how our slot value may occur in an utterance, we can simply create a sample utterance with the slot name ("city" in our example) in "{}" in the utterance--for example: "Need a vacation to {city}".
 
 <details><summary>Referance a slot in an utterance</summary>
 <p>
