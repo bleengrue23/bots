@@ -78,17 +78,19 @@ After you have created your bot, you should see the 'Editor' tab of the main pag
 
 <img src="Images/BotEditor.PNG" width="700" />
 
-As indicated by this screen, the primary thing we now need to do to set up our bot is to create its *intents*.  As you can also tell from this screen, *intents* are the things that user can do with our bot.  Becaue I want to demonstrate the ease with which we can both pull information into, as well as push information out of, our bot it will be userful to define two different things that our users will be able to with our bot.  Namely:
-
+As you can see, the first thing we now need to do to make our bot functional is to create its *intents*.  As noted on the Lex editor page, *intents* are the things that user can do with our bot.  Becaue I want to demonstrate the ease with which we can both pull/push data to/from our bot, it will be userful to define two different sorts of things our users can do with our bot.  Namely:
 
   * Intent 1: Check the weather for a given city
   * Intent 2: Enter their information for flight reservation to a city
 
-We can start off creating these intents by clicking on the "Create Intent" button on the editor tab, and then selecting "create intent" again on the following pop-up menu, and then giving our first intent a name.  Once we have named our intent, we are automatically taken to the editor for the intent.
+Creating each of these intents is a seperate step in our build process.  In the remaind of this step we will concentrate on building the first intent--we want to set up our chatbot so that it service user requests to check the weather for a given city.  To accomplish this, start by clicking the "Create Intent" button on the editor tab, and then selecting 'create' (rather than 'import') on the following pop-up menu, and then giving our intent a name (I have used "CheckWeather").  Once we have named our intent, we are automatically taken to its editor.
 
 <img src="Images/IntentsEditor.png" width="700" />
 
-For this tutorial, we will not be using an initialization Lambda function. We will assume the user engages our application as an authorized user knowing its purpose, namely allowing them to check weather and make flight reservations.  However we do need to specify some initial *utterances.
+Here you can see entry parameters for defining *utterances, an initialization, and slots*. For this tutorial, we will not be using an initialization function. We will assume the user came to our application as an authorized user knowing its purpose, namely allowing them to check weather forecasts and make flight reservations.  However one always needs to specify *utterances* and at least one *slot* for an intent.
+
+*Lex Utterances*: an utterance is an example of a user input (voice or text) that should start an intent
+*Lex Slot*: a slot defines the type of information your bot needs to fulfill an intent
 
 A Lex utterance is the verbal or typed input that lets our bot know which of our intents (the things our bot can do) the user wants to engage with.  To activate the intent for checking the weather, we need to specify what kinds of input a typical user would use to let someone know they want a weather forecast, such as "Check weather"  
 
