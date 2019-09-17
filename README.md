@@ -118,7 +118,7 @@ After you have added your slot to the intent and saved the intent, you are ready
 
 <details><summary>Create a Test bot build</summary>
 <p>
-<img src="Images/TestBuild.PNG" width="700" />
+<img src="Images/TestBuild.png" width="700" />
 </p>
 </details>
 
