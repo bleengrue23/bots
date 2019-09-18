@@ -361,7 +361,7 @@ The slots we that we are going to require for this intent are
 * destination
 * date
 
-The is the information that we are going to need to store in our DynamoDB to hold our reservation data. The creation our second intent should look something like the following:
+This is the information that we are going to need to store in our DynamoDB to hold our reservation data. The creation our second intent should look something like the following:
 
 <img src="Images/MakeResIntent.PNG" width="700" />
 
@@ -444,11 +444,11 @@ You can paste the code above directly in to the Lambda code editor to complete y
 
 There is one last thing we must do to complete this function before moving on.  We must give our Lambda function permission to interact with our DynamoDB database. To do this, scroll down below the code editor pane to view the permissions section.  here select the option to view the permission in IAM
 
-<img src="Images/EditLambdaPermissions.PNG" width="700" />
+<img src="Images/EditLambdaPermissions.png" width="700" />
 
 Once you are viewing the role in IAM, select the option to attach permissions directly to the role, then find the permission granting access to DynamoDB
 
-<img src="Images/AttachDynamoDBpermissions.PNG" width="700" />
+<img src="Images/AttachDynamoDBpermissions.png" width="700" />
 
 With this permission selected go ahead and attach the permission to your Lambda function.  Save your function.  We are now ready to test its functionality.
 
