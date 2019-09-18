@@ -272,8 +272,13 @@ module.exports.getWeather = async (event) => {
   }
 };
 ```
+To complete this tutorial you can paste the above code into an editor of your choosing, then save the file as "WeatherAPICall.js".  Alternatively you can just download the WeatherAPICall folder from this project. That folder contains the "axios" node library that the URL call used in this function depends upon.
 
+Returning to the point mentioned above, becuase this function has dependency outside of the standard javascript library.  **We must create a single zipped file that contains both the WeatherAPICall.js and the node library in this project**.
 
+<img src="Images/WeatherAPIcall.PNG" width="700" />
+
+Once you have created the appropriate zipped file, you are ready to move to the next step.
 # Step 7: Build your Lambda function
 
 <img src="Images/CreateLambda.PNG" width="700" />
