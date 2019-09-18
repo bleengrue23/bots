@@ -172,7 +172,7 @@ Selecting the Lambda function option tells Lex to call the Lambda function once 
 
 To do this, we will be using Node.js, though it is worth noting that a variety of other languages can be used.  I use Node.js here simply because the function is a little cleaner in its implementation regarding what it is actually doing.  But before we move to our function's construction, it is first worth pausing to note what is passed into to our Lambda  in terms of the JSON name/value pairs:
 
-*Lex output to Lambda
+*Lex output to Lambda*
 
 ```python
 
