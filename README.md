@@ -279,9 +279,14 @@ Returning to the point mentioned above, becuase this function has dependency out
 <img src="Images/WeatherAPIcall.PNG" width="700" />
 
 Once you have created the appropriate zipped file, you are ready to move to the next step.
+
 # Step 7: Build your Lambda function
 
+To create your Lambda function, you will need to navigate to the AWS Lambda service.  On the main page you will need to select "Create Function button on the main pages
+
 <img src="Images/CreateLambda.PNG" width="700" />
+
+The subsequent screen allows you set your Lambda function's initial parameters, such as its name (here I use "myAPIcall"), the initial runtime engine (Node.js), and the initial permissions assigned to the function.  Here you can use the default permissions.
 
 <details><summary>Specify Lambda Function Parameters</summary>
 <p>
@@ -289,6 +294,9 @@ Once you have created the appropriate zipped file, you are ready to move to the 
 </p>
 </details>
 
+Once you have set the functions initial parameters, you can go ahead and create the function, and then you will be taken to the functions Editor screen. Here we could simply begin entering our code in the code editor portion of the editor screen, but because our function has an external dependency we are simply going to upload our package into out Lambda function rather creating it within the Lambda's built in code editor.
+
+To upload our zipped file into Lambda function you will need to select the option to upload a file from the *Code Entry Menu* on the left hand side of the screen.
 
 <details><summary>Upload Package To Lambda</summary>
 <p>
@@ -296,17 +304,35 @@ Once you have created the appropriate zipped file, you are ready to move to the 
 </p>
 </details>
 
+Once you have selected the upload option, select the zipped file on your local machine and upload it into the Lambda function.  You will likely need to edit two of the areas highlighted below.
+
 <img src="Images/makeSure.png" width="700" />
+
+First, as displayed in the environment pane for your function **make sure that your function's file and the node folder are in main Lambda folder**, not a sub-folder with your .zip file's name.  If the are in your zipped file folder's name, you can simply drag them into the main folder with your mouse.
+
+The second thing you will likely need to edit is the handler field.  **The handler field must contain the name of your node.js file (WeatherAPIcall in our case), followed by the name of the internal function Lambda is supposed to call (getWeather)."
+
+With these two fields appropriately set, we can move on to the next step.
 
 # Step 8: Test your Lambda function
 
+To test our function, we will be using the schema noted in step 6 above the gives the JSON package format that Lex will passes to our function. First we need to create a test file by selecting the *configure test events* option from the Test pull-down menu at the top right of the screen.
+
 <img src="Images/CreateTest.png" width="700" />
+
+After selecting this option, you can copy and paste the JSON schema from the *Lex output to Lambda* code snippet above in step 6.  Once this code is pasted into test event, you need to **edit the slots** of the currentIntent JSON.  Our function is going to be looking for the city value of the city slot.  Rename the slot name in the JSON "slot", and give it the value of any city.
 
 <img src="Images/EditTest.png" width="700" />
 
+After editing the test event in this fashion you can save your test event and run the test by clicking on the test button on the top right.
+You will be able to view the results of your test underneath the code editor window.  It should return an answer response of the form specified in our function for the city you entered in your test event.
+
 <img src="Images/TestResult.PNG" width="700" />
 
-# Step 9: Add your Lambda function to your Intent
+
+# Step 9: Add your Lambda function to your Intent and Test
+
+After you have tested your function, you are ready to add your Lambda function as the fulfillment condition of your Lex intent.  To do this, go back to the Lex AWS service and scroll down to the fulfillment section of your intent.  With the radio button selected for fulfillment by Lambda, you should now see the name of your saved Lambda function available to select.
 
 <details><summary>Add a Lambda function to an Intent</summary>
 <p>
@@ -314,7 +340,15 @@ Once you have created the appropriate zipped file, you are ready to move to the 
 </p>
 </details>
 
+When you select your Lambda function from the pull-down menu you will need to go ahead and give permissions to your Lambda function to interact with your Lex bot.
+
 <img src="Images/GiveLambPerm.PNG" width="700" />
+
+Once the function is set, you can save your intent, rebuild your bot, and test its performance.
+
+<img src="Images/.LexTest1.PNG" width="700" />
+
+You should now be able to see the result of the API call in the test pane of the Lex chat bot.
 
 # Step 10: Create your 2nd Intent
 
