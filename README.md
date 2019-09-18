@@ -280,24 +280,24 @@ module.exports.getWeather = async (event) => {
 
 <details><summary>Specify Lambda Function Parameters</summary>
 <p>
-<img src="Images/CreateFunction.PNG" width="700" />
+<img src="Images/CreateFunction.png" width="700" />
 </p>
 </details>
 
 
 <details><summary>Upload Package To Lambda</summary>
 <p>
-<img src="Images/uploadzip.PNG" width="700" />
+<img src="Images/uploadzip.png" width="700" />
 </p>
 </details>
 
-<img src="Images/makeSure.PNG" width="700" />
+<img src="Images/makeSure.png" width="700" />
 
 # Step 8: Test your Lambda function
 
-<img src="Images/CreateTest.PNG" width="700" />
+<img src="Images/CreateTest.png" width="700" />
 
-<img src="Images/EditTest.PNG" width="700" />
+<img src="Images/EditTest.png" width="700" />
 
 <img src="Images/TestResult.PNG" width="700" />
 
@@ -305,7 +305,7 @@ module.exports.getWeather = async (event) => {
 
 <details><summary>Add a Lambda function to an Intent</summary>
 <p>
-<img src="Images/SetAPIcall.PNG" width="700" />
+<img src="Images/SetAPIcall.png" width="700" />
 </p>
 </details>
 
@@ -376,7 +376,7 @@ exports.handler = (event, context, callback) => {
 
 # Step 12: Add your DynamoDB function to your Bot and test
 
-<img src="Images/SuccessfulLexTest.PNG" width="700" />
+<img src="Images/SuccessfulLexTest.PNG" width="300" />
 
 <img src="Images/SuccessDynamoTest.PNG" width="700" />
 
