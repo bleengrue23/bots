@@ -308,9 +308,9 @@ Once you have selected the upload option, select the zipped file on your local m
 
 <img src="Images/makeSure.png" width="700" />
 
-First, as displayed in the environment pane for your function **make sure that your function's file and the node folder are in main Lambda folder**, not a sub-folder with your .zip file's name.  If the are in your zipped file folder's name, you can simply drag them into the main folder with your mouse.
+First, as displayed in the environment pane for your function **make sure that your function's file and the node folder are in main Lambda folder**, not a sub-folder with your .zip file's name.  If they are in your zipped file folder's name, you can simply drag them into the main folder with your mouse.
 
-The second thing you will likely need to edit is the handler field.  **The handler field must contain the name of your node.js file (WeatherAPIcall in our case), followed by the name of the internal function Lambda is supposed to call (getWeather)."
+The second thing you will likely need to edit is the handler field.  **The handler field must contain the name of your node.js file (WeatherAPIcall in our case), followed by the name of the internal function Lambda is supposed to call (getWeather)."**
 
 With these two fields appropriately set, we can move on to the next step.
 
@@ -346,7 +346,7 @@ When you select your Lambda function from the pull-down menu you will need to go
 
 Once the function is set, you can save your intent, rebuild your bot, and test its performance.
 
-<img src="Images/.LexTest1.PNG" width="700" />
+<img src="Images/.LexTest1.png" width="700" />
 
 You should now be able to see the result of the API call in the test pane of the Lex chat bot.
 
