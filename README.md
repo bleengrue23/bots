@@ -346,7 +346,7 @@ When you select your Lambda function from the pull-down menu you will need to go
 
 Once the function is set, you can save your intent, rebuild your bot, and test its performance.
 
-<img src="Images/.LexTest1.png" width="700" />
+<img src="Images/LexTest1.PNG" width="300" />
 
 You should now be able to see the result of the API call in the test pane of the Lex chat bot.
 
