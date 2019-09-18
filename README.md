@@ -352,9 +352,26 @@ You should now be able to see the result of the API call in the test pane of the
 
 # Step 10: Create your 2nd Intent
 
+We are now ready to create our 2nd intent, the Intent to use our bot to make a flight reservation.  Note that in the closing text of our 1st, we set ourself up for what we want to be the primary utterance that activates our sencond intent, namely **"Yes"**.
+
+The slots we that we are going to require for this intent are
+
+* last_name
+* first_name
+* destination
+* date
+
+The is the information that we are going to need to store in our DynamoDB to hold our reservation data. The creation our second intent should look something like the following:
+
 <img src="Images/MakeResIntent.PNG" width="700" />
 
+Once you have created your second intent, save it and you are ready for creating our 2nd Lambda function.
+
 # Step 11: Create your DynamoDB Lambda Function
+
+To create our second Lamda function, we are simply going to use the code editor within the Lambda console.  We can do this as the only methods we are going to employ in this function outside of the standard javascript library are available from the "aws-sdk".  Unlike our earlier node, this we can invoke from the Lambda function directly at the start our function. 
+
+To start, create a new Lambda function in the same way that we did in step 7. Use the default permissions and name it "myReservationDBfunction". There is no need however to upload a package this time.  Once we are taken to the function's editor, we can enter our code directly in the code editor pane.
 
 ```javascript
 
@@ -362,6 +379,12 @@ console.log('Loading event');
 var AWS = require('aws-sdk');
 var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 var tableName = "FlightReservation";
+```
+The second line of the code here gives us access to the methods required to add our Lex intent slot values to our DynamoDB. **Note:** the value of the tableName variable here needs to match the name we gave our DynamoDB at the beginning of our project.  This tells the function where to push our data to.
+
+Now we need to build a function that will take our slot values as inputs as push those inputs our to our database.  We can do this with the following code:
+
+```javascript
 
 function storeReservation(intent, callback) {
 	
@@ -389,7 +412,10 @@ function storeReservation(intent, callback) {
         }
     });
 }
+```
+This function stores the slot values that it recieves from Lex and then passes them into our DynamoDB table. Now we need finish our function by closing our Lex session and creating our handler call.
 
+```javascript
 function close(sessionAttributes, fulfillmentState, message) {
     return {
         sessionAttributes,
@@ -412,10 +438,30 @@ exports.handler = (event, context, callback) => {
     }
 };
 ```
+These two functions close the intent in our Lex bot, and create the handler function that Lambda will use to call our internal function. Note that constructing our handler in this way should allow us access to the default handler definition in the Lambda node.js code editor ("index.handler").  Therefore we should not need to change that value in this example.
 
+You can paste the code above directly in to the Lambda code editor to complete your function (you can also copy the code from the index file in this project's ReservationDBfunction folder).  Once you have entered the code into the editor save the function.  
+
+There is one last thing we must do to complete this function before moving on.  We must give our Lambda function permission to interact with our DynamoDB database. To do this, scroll down below the code editor pane to view the permissions section.  here select the option to view the permission in IAM
+
+<img src="Images/EditLambdaPermissions.PNG" width="700" />
+
+Once you are viewing the role in IAM, select the option to attach permissions directly to the role, then find the permission granting access to DynamoDB
+
+<img src="Images/AttachDynamoDBpermissions.PNG" width="700" />
+
+With this permission selected go ahead and attach the permission to your Lambda function.  Save your function.  We are now ready to test its functionality.
+
+Because proper testing of this function requires access to our DynamoDB, it will be more useful to test this function in the AWS console rather than viewing the output data here.
+
+At this stage we are ready to return to our Lex chatbot.
 # Step 12: Add your DynamoDB function to your Bot and test
 
+When you have returned to your Lex chatbot, add the function as the fulfillment condition to your 2nd intent.  Save the intent. Build your chatbot, and then test its functionality in the test pane.  A successful test should look something like this:
+
 <img src="Images/SuccessfulLexTest.PNG" width="300" />
+
+Once you have tested the functionality from Lex bot, it is now time to check the functionality of your Lambda database function from the DynamoDB console.  To do this, navigate to the to DynamoDB service, and then check the items in your table.  A successful test should show the an updated table with data from your chat session.
 
 <img src="Images/SuccessDynamoTest.PNG" width="700" />
 
