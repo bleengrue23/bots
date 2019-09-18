@@ -166,7 +166,7 @@ This time you should see the response "Ready for fulfillment" immediately return
 
 Below the slot definition of the intent, you will find the "Fulfillment" section for our intent, and the radio button option for using a Lambda function for the fulfillment stage.  
 
-<img src="Images/Fulfill.png" width="700" />
+<img src="Images/Fulfill.PNG" width="700" />
 
 Selecting the Lambda function option tells Lex to call the Lambda function once it has reached the the "Ready for Fulfillment" state. However, selecting the Lambda function option for fulfillment at this point won't get us very far.  We first need to create the Lambda function. 
 
