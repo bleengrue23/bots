@@ -162,7 +162,7 @@ Once you have added some utterances that reference your slot, save your intent a
 
 This time you should see the response "Ready for fulfillment" immediately returned.  
 
-# Step 5: Build a function to fulfill your intent
+# Step 6: Build a function to fulfill your intent
 
 Below the slot definition of the intent, you will find the "Fulfillment" section for our intent, and the radio button option for using a Lambda function for the fulfillment stage.  
 
@@ -273,3 +273,68 @@ module.exports.getWeather = async (event) => {
 };
 ```
 
+# Step 7: Build a function package to upload to Lambda
+# Step 8: Build your Lambda function
+# Step 9: Test your Lambda function
+# Step 10: Add your Lambda function to your Intent
+# Step 11: Create your 2nd Intent
+# Step 12: Create your DynamoDB Lambda Function
+
+```javascript
+
+console.log('Loading event');
+var AWS = require('aws-sdk');
+var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+var tableName = "FlightReservation";
+
+function storeReservation(intent, callback) {
+	
+	 let userInfo = {};
+
+    Object.keys(intent.currentIntent.slots).forEach((item) => {
+        console.log(item)
+        userInfo[item] = {"S": intent.currentIntent.slots[item]};
+    });
+
+    
+    dynamodb.putItem({
+        "TableName": tableName,
+        "Item" : userInfo
+    }, function(err, data) {
+        if (err) {
+            console.log('Failure storing user info');
+            console.log(err);
+            callback(close(intent.sessionAttributes, 'Fulfilled',
+            {'contentType': 'PlainText', 'content': "I am sorry, but something went wrong saving your Registration Info. Please try again."}));
+        } else {
+            console.log("Successfully Stored UserInfo");
+            callback(close(intent.sessionAttributes, 'Fulfilled',
+            {'contentType': 'PlainText', 'content': "Thank you for using us to make your reservations."}));
+        }
+    });
+}
+
+function close(sessionAttributes, fulfillmentState, message) {
+    return {
+        sessionAttributes,
+        dialogAction: {
+            type: 'Close',
+            fulfillmentState,
+            message,
+        },
+    };
+}
+exports.handler = (event, context, callback) => {
+    console.log(event);
+    try {
+        storeReservation(event,
+            (response) => {
+                callback(null, response);
+            });
+    } catch (err) {
+        callback(err);
+    }
+};
+```
+
+# Step 13: Add your DynamoDB function to your Bot and test
