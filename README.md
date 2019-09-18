@@ -273,12 +273,49 @@ module.exports.getWeather = async (event) => {
 };
 ```
 
-# Step 7: Build a function package to upload to Lambda
-# Step 8: Build your Lambda function
-# Step 9: Test your Lambda function
-# Step 10: Add your Lambda function to your Intent
-# Step 11: Create your 2nd Intent
-# Step 12: Create your DynamoDB Lambda Function
+
+# Step 7: Build your Lambda function
+
+<img src="Images/CreateLambda.PNG" width="700" />
+
+<details><summary>Specify Lambda Function Parameters</summary>
+<p>
+<img src="Images/CreateFunction.PNG" width="700" />
+</p>
+</details>
+
+
+<details><summary>Upload Package To Lambda</summary>
+<p>
+<img src="Images/uploadzip.PNG" width="700" />
+</p>
+</details>
+
+<img src="Images/makeSure.PNG" width="700" />
+
+# Step 8: Test your Lambda function
+
+<img src="Images/CreateTest.PNG" width="700" />
+
+<img src="Images/EditTest.PNG" width="700" />
+
+<img src="Images/TestResult.PNG" width="700" />
+
+# Step 9: Add your Lambda function to your Intent
+
+<details><summary>Add a Lambda function to an Intent</summary>
+<p>
+<img src="Images/SetAPIcall.PNG" width="700" />
+</p>
+</details>
+
+<img src="Images/GiveLambPerm.PNG" width="700" />
+
+# Step 10: Create your 2nd Intent
+
+<img src="Images/MakeResIntent.PNG" width="700" />
+
+# Step 11: Create your DynamoDB Lambda Function
 
 ```javascript
 
@@ -337,4 +374,9 @@ exports.handler = (event, context, callback) => {
 };
 ```
 
-# Step 13: Add your DynamoDB function to your Bot and test
+# Step 12: Add your DynamoDB function to your Bot and test
+
+<img src="Images/SuccessfulLexTest.PNG" width="700" />
+
+<img src="Images/SuccessDynamoTest.PNG" width="700" />
+
