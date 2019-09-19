@@ -70,7 +70,7 @@ On the "Create your bot" page, select the "custom bot" option at the top.  To co
 </p>
 </details>
 
-With these options set you can go ahead and create your bot.
+With these options set, you can go ahead and create your bot.
 
 # Step 3: Create a bot Intent
 
@@ -87,7 +87,7 @@ Becaue I want to demonstrate the ease with which we can both pull/push data to/f
   * Intent 1: Check the weather for a given city
   * Intent 2: Enter their information for flight reservation to a city
 
-Creating each of these intents is a seperate step in our build process.  In the remainder of this step we will concentrate on building the first intent--checking the weather for a given city.  To accomplish this, start by clicking the "Create Intent" button on the editor tab, and then selecting 'create' (rather than 'import') on the following pop-up menu. Following that, give the intent a name (I have used "CheckWeather").  Once intent is named and created, we are taken to its editor.
+Creating each of these intents is a seperate step in our build process.  In the remainder of this step we will concentrate on building the first intent--checking the weather for a given city.  To accomplish this, start by clicking the "Create Intent" button on the editor tab, and then selecting 'create' (rather than 'import') on the following pop-up menu. Following that, give the intent a name (I have used "CheckWeather").  Once the intent is named and created, we are taken to its editor.
 
 <img src="Images/IntentsEditor.png" width="700" />
 
