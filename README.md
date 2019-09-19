@@ -93,8 +93,8 @@ Creating each of these intents is a seperate step in our build process.  In the 
 
 Here you can see entry parameters for defining *utterances, an initialization, and slots*. For this tutorial, we will not be using an initialization function. We will assume the user came to our application as an authorized user knowing its purpose, namely allowing one to check weather forecasts and make flight reservations.  However one always needs to specify *utterances* and at least one *slot* for an intent.
 
-*Lex Utterances*: an utterance is an example of a user input (voice or text) that should start an intent
-*Lex Slot*: a slot defines the type of information your bot needs to fulfill an intent
+* *Lex Utterances*: an utterance is an example of a user input (voice or text) that should start an intent
+* *Lex Slot*: a slot defines the type of information your bot needs to fulfill an intent
 
 A Lex utterance is the verbal or typed input that lets our bot know which of our intents the user wants.  To activate the intent for checking the weather, we need to specify what kinds of things a user would say or type when they want to check the weather, for example: "Check weather", "Get forecast", "What's the temperature", etc.  You should always supply multiple potential utterances.  The more you specify, the better Lex's built-in AI will be able to determine that a given unspecified input, such as "How hot is it?" is an appropriate activating utterance for out intent.  
 
